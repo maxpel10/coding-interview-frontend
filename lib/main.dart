@@ -1,9 +1,14 @@
 import 'package:exchange_calculator/features/ui/exchange_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'core/theme/theme.dart';
 
 void main() {
-  runApp(const ExchangeCalculatorApp());
+  runApp(
+    const ProviderScope(
+      child: ExchangeCalculatorApp(),
+    ),
+  );
 }
 
 class ExchangeCalculatorApp extends StatelessWidget {
