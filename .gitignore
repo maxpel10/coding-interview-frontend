@@ -41,3 +41,7 @@ tmp
 /keys
 
 /web/firebase-messaging-sw.js
+
+env.json
+*.g.dart
+*.freezed.dart

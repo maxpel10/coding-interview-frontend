@@ -7,19 +7,28 @@
         {
             "name": "coding-interview-frontend",
             "request": "launch",
-            "type": "dart"
+            "type": "dart",
+            "args": [
+                "--dart-define-from-file=env.json"
+            ]
         },
         {
             "name": "coding-interview-frontend (profile mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "profile"
+            "flutterMode": "profile",
+            "args": [
+                "--dart-define-from-file=env.json"
+            ]
         },
         {
             "name": "coding-interview-frontend (release mode)",
             "request": "launch",
             "type": "dart",
-            "flutterMode": "release"
+            "flutterMode": "release",
+            "args": [
+                "--dart-define-from-file=env.json"
+            ]
         }
     ]
 }

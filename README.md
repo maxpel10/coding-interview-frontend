@@ -1,42 +1,36 @@
-# Bienvenido al coding-interview-frontend
+## Cómo ejecutar el proyecto
 
-## Descripción
-Acá tienes todos los assets que necesitas para llevar a cabo una pequeña prueba técnica. El objetivo es que puedas demostrar tus habilidades de programación y de UI. El proyecto consiste de una pequeña calculadora que te muestra cuanto vas a recibir si quieres cambiar una determinada cantidad de una moneda a otra.
+### Requisitos
+- [Flutter](https://docs.flutter.dev/get-started/install) instalado (compatible con el SDK de Dart indicado en `pubspec.yaml`).
 
-## Características
-1. Hay dos tipos de monedas: "FIAT" y "CRYPTO".
-2. La tasa de cambio la podrás obtener de nuestro API público.
-3. La moneda del input 
+### Archivo `env.json` y `dart-define`
+La base del API se configura en **tiempo de compilación** con `String.fromEnvironment('API_URL')`. Por eso **debe existir un `env.json` en la raíz del proyecto** (junto a `pubspec.yaml`) y debes pasar sus valores al ejecutar o compilar con `--dart-define-from-file`.
 
-## API
-- URL: https://74j6q7lg6a.execute-api.eu-west-1.amazonaws.com/stage/orderbook/public/recommendations
-- Query Params:
-  - `type`: 0 -> Cambio de CRYPTO a FIAT, 1 -> Cambio de FIAT a CRYPTO
-  - `cryptoCurrencyId`: La moneda crypto (el ID está en el nombre del asset)
-  - `fiatCurrencyId`: La moneda fiat (el ID está en el nombre del asset)
-  - `amount`: Cantidad a cambiar
-  - `amountCurrencyId`: La moneda en la que está del input
+> El archivo `env.json` no se sube al repositorio (está en `.gitignore`). Se debe crear en su máquina.
 
-Del response, simplemente obtener el `data.byPrice.fiatToCryptoExchangeRate` y multiplicarlo/dividirlo para mostrar toda la data necesaria.
+Ejemplo de `env.json`:
 
-### Que puedes hacer: 
-- ✅ Preferiblemente, usa Flutter :)
-- ✅ Cuantas mejoras de UX como veas necesarias/quieras
-- ✅ No todo tiene que estar funcionando a la perfección, lo que más vamos a tomar en cuenta es el parecido con el diseño y la calidad del código.
-- ✅ Desarrolla la app con la arquitecura de una app que va a escalar, no hagas un código que no puedas mantener en el futuro.
+```json
+{
+  "API_URL": "https://74j6q7lg6a.execute-api.eu-west-1.amazonaws.com/stage"
+}
+```
 
+`API_URL` es solo la **URL base** del API (el prefijo común a las rutas), no la ruta completa del endpoint de recomendaciones.
 
-### Que **no** puedes hacer:
-- ❌ Estresarte 🤗
+### Comandos
+En la raíz del repositorio:
 
+```bash
+flutter pub get
+flutter run --dart-define-from-file=env.json
+```
 
-## Pasos para comenzar
-1. Haz un fork usando este repositorio como template
-2. Clona el repositorio en tu máquina
-3. Desarrolla la mini-app
-4. Sube tus cambios a tu repositorio
-5. Avísanos que has terminado
-6. ???
-7. PROFIT
+Para compilar o correr tests, se usa el mismo flag si la ejecución necesita el cliente HTTP:
 
-### Cualquier duda contactarme a https://www.linkedin.com/in/carlosfontest/
+```bash
+flutter test --dart-define-from-file=env.json
+flutter build apk --dart-define-from-file=env.json
+```
+
+**VS Code / Cursor:** las configuraciones en `.vscode/launch.json` ya incluyen `--dart-define-from-file=env.json`; puedes lanzar la app en debug con esas configuraciones sin escribir el flag a mano.
