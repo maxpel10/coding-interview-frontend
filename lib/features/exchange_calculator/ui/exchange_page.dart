@@ -64,15 +64,15 @@ class _ExchangePageState extends ConsumerState<ExchangePage> {
         clipBehavior: Clip.none,
         children: [
           Positioned(
-            right: -80,
-            top: 120,
+            right: -600,
+            top: -50,
             child: IgnorePointer(
               child: Container(
-                width: 320,
-                height: 320,
+                width: 800,
+                height: 800,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.primary.withValues(alpha: 0.38),
+                  color: AppColors.primary
                 ),
               ),
             ),
