@@ -3,6 +3,15 @@
 ### Requisitos
 - [Flutter](https://docs.flutter.dev/get-started/install) instalado (compatible con el SDK de Dart indicado en `pubspec.yaml`).
 
+### Generación de código (`.g.dart`, `.freezed.dart`)
+El proyecto usa **json_serializable**, **retrofit** y **freezed**, que generan archivos `*.g.dart` y `*.freezed.dart`. No están versionados de forma manual: hay que generarlos después de `flutter pub get` (o al cambiar modelos / anotaciones):
+
+```bash
+dart run build_runner build --delete-conflicting-outputs
+```
+
+Durante el desarrollo puedes usar `dart run build_runner watch --delete-conflicting-outputs` para regenerar al guardar.
+
 ### Archivo `env.json` y `dart-define`
 La base del API se configura en **tiempo de compilación** con `String.fromEnvironment('API_URL')`. Por eso **debe existir un `env.json` en la raíz del proyecto** (junto a `pubspec.yaml`) y debes pasar sus valores al ejecutar o compilar con `--dart-define-from-file`.
 
